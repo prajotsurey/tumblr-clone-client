@@ -14,7 +14,6 @@ function MyApp({ Component, pageProps }) {
     .then(async x => {
       const data = await x.json();
       setAccessToken(data.accessToken)
-      console.log(getAccessToken())
       setLoading(false);
     })
   }, [])

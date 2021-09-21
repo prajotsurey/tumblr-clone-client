@@ -30,9 +30,12 @@ const tokenRefreshLink = new TokenRefreshLink({
 
     try {
       const { exp }:any = jwtDecode(token);
+      console.log(exp)
       if (Date.now() >= exp * 1000) {
+        console.log('expired')
         return false;
       } else {
+        console.log('not expired')
         return true;
       }
     } catch {
@@ -56,7 +59,7 @@ const tokenRefreshLink = new TokenRefreshLink({
 })
 
 const apolloClient = new ApolloClient({
-  link: from([authLink.concat(httpLink),tokenRefreshLink]),
+  link: from([tokenRefreshLink, authLink.concat(httpLink)]),
   // link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });

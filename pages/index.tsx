@@ -1,6 +1,10 @@
 import Link from 'next/link'
+import { setAccessToken } from '../accessToken';
+import { useLogoutMutation } from '../generated/graphql';
+import withApollo from '../utils/withApollo';
 
 const index = () => {
+  const [logout, {client}] = useLogoutMutation()
   return(
     <div className="h-screen grid grid-cols-1 place-items-center">
       <div>
@@ -8,9 +12,16 @@ const index = () => {
         <Link href="/bye">
           goto bye
         </Link>
+        <button onClick={async() => {
+          await logout();
+          setAccessToken("");
+          await client.resetStore();
+          }}>
+          Logout
+        </button>
       </div>
     </div>
   )
 }
 
-export default index;
+export default withApollo({ssr: false})(index);
