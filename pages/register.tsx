@@ -7,20 +7,12 @@ import { useRegisterMutation, ValidateOutput } from '../generated/graphql';
 import * as Yup from 'yup';
 import { FormErrorSection } from '../components/FormErrorSection';
 import mapToFormikErrors from '../utils/mapToFormikErrors';
+import { useRouter } from 'next/dist/client/router';
 
 const Register= () => {
 
   const [register] = useRegisterMutation()
-  
-  // const validationSchema = Yup.object({
-
-  //   username: Yup.string().required('Required'),
-  //   email: Yup.string().email('Invalid email address').required('Required'),
-  //   password: Yup.string().required('Required'),
-  //   passwordConfirm: Yup.string().required('Required'),
-
-  // })
-  
+  const router = useRouter();
   return(
     <div className="h-screen grid grid-cols-1 place-items-center">
       <div className="rounded-md border border-black p-5">
@@ -33,7 +25,11 @@ const Register= () => {
                 }
               }
             })
-            setErrors(mapToFormikErrors(response.data.registerUser.errors))
+            if(response.data.registerUser.errors){
+              setErrors(mapToFormikErrors(response.data.registerUser.errors))
+            } else {
+              router.push('/login')
+            }
           }}
           initialValues={{
             username: "",
