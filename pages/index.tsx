@@ -1,9 +1,11 @@
-import React from 'react'
-
 const index = () => {
-    return (
-      <div>Hello world</div>
-    );
+  return(
+    <div className="h-screen grid grid-cols-1 place-items-center">
+      <div>
+        Index
+      </div>
+    </div>
+  )
 }
 
 export default index;
