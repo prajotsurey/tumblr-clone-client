@@ -1,6 +1,7 @@
 import { Form, Formik } from 'formik';
 import { useRouter } from 'next/dist/client/router';
 import React from 'react';
+import { getAccessToken, setAccessToken } from '../accessToken';
 import { FormErrorSection } from '../components/FormErrorSection';
 import { InputField } from '../components/InputField';
 import { useLoginMutation } from '../generated/graphql';
@@ -25,6 +26,9 @@ const Register= () => {
               setErrors(mapToFormikErrors(response.data.login.errors))
             } else {
               router.push('/')
+              console.log(response.data.login.token)
+              setAccessToken(response.data.login.token)
+              console.log(getAccessToken())
             }
           }}
           initialValues={{

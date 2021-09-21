@@ -21,6 +21,7 @@ export type Mutation = {
   createpost: Post;
   login: UserResponse;
   register: UserResponse;
+  revokeRefreshTokensForUser: Scalars['Boolean'];
 };
 
 
@@ -40,6 +41,11 @@ export type MutationRegisterArgs = {
   options: RegisterUserInput;
 };
 
+
+export type MutationRevokeRefreshTokensForUserArgs = {
+  userId: Scalars['Int'];
+};
+
 export type Post = {
   __typename?: 'Post';
   createdAt: Scalars['DateTime'];
@@ -52,6 +58,7 @@ export type Post = {
 
 export type Query = {
   __typename?: 'Query';
+  bye: Scalars['String'];
   hello: Scalars['String'];
   posts: Array<Post>;
   user?: Maybe<User>;
@@ -68,6 +75,7 @@ export type User = {
   email: Scalars['String'];
   id: Scalars['Float'];
   posts: Array<Post>;
+  tokenVersion: Scalars['Float'];
   updatedAt: Scalars['DateTime'];
   username: Scalars['String'];
 };
@@ -75,6 +83,7 @@ export type User = {
 export type UserResponse = {
   __typename?: 'UserResponse';
   errors?: Maybe<Array<ValidateOutput>>;
+  token?: Maybe<Scalars['String']>;
   user?: Maybe<User>;
 };
 
@@ -97,7 +106,7 @@ export type LoginMutationVariables = Exact<{
 }>;
 
 
-export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'UserResponse', errors?: Maybe<Array<{ __typename?: 'validateOutput', field: string, message: string }>>, user?: Maybe<{ __typename?: 'User', id: number, email: string }> } };
+export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'UserResponse', token?: Maybe<string>, errors?: Maybe<Array<{ __typename?: 'validateOutput', field: string, message: string }>>, user?: Maybe<{ __typename?: 'User', id: number, email: string }> } };
 
 export type RegisterMutationVariables = Exact<{
   options: RegisterUserInput;
@@ -105,6 +114,11 @@ export type RegisterMutationVariables = Exact<{
 
 
 export type RegisterMutation = { __typename?: 'Mutation', register: { __typename?: 'UserResponse', errors?: Maybe<Array<{ __typename?: 'validateOutput', field: string, message: string }>>, user?: Maybe<{ __typename?: 'User', id: number, username: string, email: string }> } };
+
+export type ByeQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ByeQuery = { __typename?: 'Query', bye: string };
 
 
 export const LoginDocument = gql`
@@ -118,6 +132,7 @@ export const LoginDocument = gql`
       id
       email
     }
+    token
   }
 }
     `;
@@ -189,3 +204,35 @@ export function useRegisterMutation(baseOptions?: Apollo.MutationHookOptions<Reg
 export type RegisterMutationHookResult = ReturnType<typeof useRegisterMutation>;
 export type RegisterMutationResult = Apollo.MutationResult<RegisterMutation>;
 export type RegisterMutationOptions = Apollo.BaseMutationOptions<RegisterMutation, RegisterMutationVariables>;
+export const ByeDocument = gql`
+    query bye {
+  bye
+}
+    `;
+
+/**
+ * __useByeQuery__
+ *
+ * To run a query within a React component, call `useByeQuery` and pass it any options that fit your needs.
+ * When your component renders, `useByeQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useByeQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useByeQuery(baseOptions?: Apollo.QueryHookOptions<ByeQuery, ByeQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ByeQuery, ByeQueryVariables>(ByeDocument, options);
+      }
+export function useByeLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ByeQuery, ByeQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ByeQuery, ByeQueryVariables>(ByeDocument, options);
+        }
+export type ByeQueryHookResult = ReturnType<typeof useByeQuery>;
+export type ByeLazyQueryHookResult = ReturnType<typeof useByeLazyQuery>;
+export type ByeQueryResult = Apollo.QueryResult<ByeQuery, ByeQueryVariables>;
