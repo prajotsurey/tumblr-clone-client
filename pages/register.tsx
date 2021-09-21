@@ -23,8 +23,8 @@ const Register= () => {
                 }
               }
             })
-            if(response.data.registerUser.errors){
-              setErrors(mapToFormikErrors(response.data.registerUser.errors))
+            if(response.data.register.errors){
+              setErrors(mapToFormikErrors(response.data.register.errors))
             } else {
               router.push('/login')
             }

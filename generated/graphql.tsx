@@ -20,7 +20,7 @@ export type Mutation = {
   __typename?: 'Mutation';
   createpost: Post;
   login: UserResponse;
-  registerUser: UserResponse;
+  register: UserResponse;
 };
 
 
@@ -36,7 +36,7 @@ export type MutationLoginArgs = {
 };
 
 
-export type MutationRegisterUserArgs = {
+export type MutationRegisterArgs = {
   options: RegisterUserInput;
 };
 
@@ -104,7 +104,7 @@ export type RegisterMutationVariables = Exact<{
 }>;
 
 
-export type RegisterMutation = { __typename?: 'Mutation', registerUser: { __typename?: 'UserResponse', errors?: Maybe<Array<{ __typename?: 'validateOutput', field: string, message: string }>>, user?: Maybe<{ __typename?: 'User', id: number, username: string, email: string }> } };
+export type RegisterMutation = { __typename?: 'Mutation', register: { __typename?: 'UserResponse', errors?: Maybe<Array<{ __typename?: 'validateOutput', field: string, message: string }>>, user?: Maybe<{ __typename?: 'User', id: number, username: string, email: string }> } };
 
 
 export const LoginDocument = gql`
@@ -150,7 +150,7 @@ export type LoginMutationResult = Apollo.MutationResult<LoginMutation>;
 export type LoginMutationOptions = Apollo.BaseMutationOptions<LoginMutation, LoginMutationVariables>;
 export const RegisterDocument = gql`
     mutation Register($options: registerUserInput!) {
-  registerUser(options: $options) {
+  register(options: $options) {
     errors {
       field
       message
