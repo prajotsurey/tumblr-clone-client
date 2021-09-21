@@ -1,13 +1,11 @@
-import React, { useState } from 'react';
 import { Form, Formik } from 'formik';
-import { InputField } from '../components/InputField';
-import withApollo from '../utils/withApollo';
-import { gql, useMutation } from '@apollo/client';
-import { useRegisterMutation, ValidateOutput } from '../generated/graphql';
-import * as Yup from 'yup';
-import { FormErrorSection } from '../components/FormErrorSection';
-import mapToFormikErrors from '../utils/mapToFormikErrors';
 import { useRouter } from 'next/dist/client/router';
+import React from 'react';
+import { FormErrorSection } from '../components/FormErrorSection';
+import { InputField } from '../components/InputField';
+import { useRegisterMutation } from '../generated/graphql';
+import mapToFormikErrors from '../utils/mapToFormikErrors';
+import withApollo from '../utils/withApollo';
 
 const Register= () => {
 
