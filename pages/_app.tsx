@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import 'tailwindcss/tailwind.css'
-import { setAccessToken } from '../accessToken'
+import { getAccessToken, setAccessToken } from '../accessToken'
 
 function MyApp({ Component, pageProps }) {
 
@@ -14,6 +14,7 @@ function MyApp({ Component, pageProps }) {
     .then(async x => {
       const data = await x.json();
       setAccessToken(data.accessToken)
+      console.log(getAccessToken())
       setLoading(false);
     })
   }, [])

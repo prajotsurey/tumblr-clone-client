@@ -8,8 +8,10 @@
   },
   "dependencies": {
     "@apollo/client": "^3.4.12",
+    "apollo-link-token-refresh": "^0.3.2",
     "formik": "^2.2.9",
     "graphql": "^15.5.3",
+    "jwt-decode": "^3.1.2",
     "next": "latest",
     "next-apollo": "^5.0.6",
     "react": "^17.0.2",
@@ -21,6 +23,7 @@
     "@graphql-codegen/typescript": "2.2.2",
     "@graphql-codegen/typescript-operations": "2.1.4",
     "@graphql-codegen/typescript-react-apollo": "^3.1.4",
+    "@types/jwt-decode": "^3.1.0",
     "@types/react": "^17.0.22",
     "autoprefixer": "^10.2.6",
     "postcss": "^8.3.5",
