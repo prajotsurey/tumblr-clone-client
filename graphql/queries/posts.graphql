@@ -3,5 +3,10 @@ query Posts{
     id
     title
     text
+    creatorId
+    creator{
+      id
+      username
+    }
   }
 }

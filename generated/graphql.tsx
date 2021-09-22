@@ -66,6 +66,7 @@ export type Post = {
 
 export type Query = {
   __typename?: 'Query';
+  Me?: Maybe<User>;
   bye: Scalars['String'];
   hello: Scalars['String'];
   posts: Array<Post>;
@@ -144,7 +145,7 @@ export type LogoutMutation = { __typename?: 'Mutation', logout: boolean };
 export type PostsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type PostsQuery = { __typename?: 'Query', posts: Array<{ __typename?: 'Post', id: number, title: string, text: string }> };
+export type PostsQuery = { __typename?: 'Query', posts: Array<{ __typename?: 'Post', id: number, title: string, text: string, creatorId: number, creator: { __typename?: 'User', id: number, username: string } }> };
 
 
 export const CreatePostDocument = gql`
@@ -340,6 +341,11 @@ export const PostsDocument = gql`
     id
     title
     text
+    creatorId
+    creator {
+      id
+      username
+    }
   }
 }
     `;

@@ -9,7 +9,7 @@ interface postsProps {
 
 const posts: React.FC<postsProps> = ({}) => {
   const {data, error, loading} = usePostsQuery();
-  console.log(data?.posts)
+  console.log(data.posts)
   if(!loading && !data) {
     return (
     <div> 
