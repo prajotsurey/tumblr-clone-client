@@ -14,7 +14,7 @@ export const InputField: React.FC<InputFieldProps> = (props) => {
       <label>
         {/* {props.label} */}
         <input {...field} {...props} 
-          className="p-3 border-1 shadow-xl" />
+          className="w-full p-3 border-1 shadow-xl rounded-sm focus:outline-none" />
       </label>
     </>
   );

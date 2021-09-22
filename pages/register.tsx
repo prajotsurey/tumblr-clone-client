@@ -1,6 +1,7 @@
 import { Form, Formik } from 'formik';
 import { useRouter } from 'next/dist/client/router';
 import React from 'react';
+import { CustomButton } from '../components/CustomButton';
 import { FormErrorSection } from '../components/FormErrorSection';
 import { InputField } from '../components/InputField';
 import { useRegisterMutation } from '../generated/graphql';
@@ -12,8 +13,11 @@ const Register= () => {
   const [register] = useRegisterMutation()
   const router = useRouter();
   return(
-    <div className="h-screen grid grid-cols-1 place-items-center">
-      <div className="rounded-md border border-black p-5">
+<div className="h-screen bg-tumblrBackground grid grid-cols-1 place-items-center">
+    <div className="flex flex-col  w-64">
+      <div className="text-7xl text-white font-extrabold text-center mb-4">
+        tumblr
+      </div>
         <Formik
           onSubmit={async (values, {setErrors}) => {
             const response = await register({
@@ -43,7 +47,7 @@ const Register= () => {
             <>
             <FormErrorSection errors={errors} touched={touched}/>
             <Form className="flex flex-col">
-              <div className="mt-4">  
+              <div >  
                 <InputField 
                   name="username"
                   type="text"
@@ -67,7 +71,7 @@ const Register= () => {
                 placeholder="Password"
                 />
               </div>
-              <div className="mt-4">
+              <div className="mt-4 mb-4">
                 <InputField 
                 name="passwordConfirm"
                 type="password"
@@ -75,7 +79,7 @@ const Register= () => {
                 placeholder="Confirm Password"
                 />
               </div>
-              <button className="mt-4 h-8 bg-red block" type="submit">Submit</button>
+              <CustomButton color="blue" text="Sign up"/>
             </Form>
             </>
           )}

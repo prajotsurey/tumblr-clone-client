@@ -3,7 +3,13 @@ module.exports = {
   purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'tumblrGreen': '#00cf35',
+        'tumblrBlue':'#00b8ff',
+        'tumblrBackground': "#001935",
+      }
+    },
   },
   variants: {
     extend: {},
