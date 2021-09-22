@@ -31,7 +31,7 @@ const Register= () => {
             if(response.data.login.errors){
               setErrors(mapToFormikErrors(response.data.login.errors))
             } else {
-              router.push('/')
+              router.push('/dashboard')
               console.log(response.data.login.token)
               setAccessToken(response.data.login.token)
               console.log(getAccessToken())
