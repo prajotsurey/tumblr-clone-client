@@ -23,6 +23,9 @@ const createPost: React.FC<createPostProps> = ({}) => {
             const response = await createPost({
               variables: {
                 ...values
+              },
+              update: (cache) => {
+                cache.evict({ fieldName: 'posts' })
               }
             })
             if(response.data.createpost.errors){
