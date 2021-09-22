@@ -4,6 +4,7 @@ import React from 'react';
 import { getAccessToken, setAccessToken } from '../accessToken';
 import { CustomButton } from '../components/CustomButton';
 import { FormErrorSection } from '../components/FormErrorSection';
+import { Header } from '../components/Header';
 import { InputField } from '../components/InputField';
 import { useLoginMutation } from '../generated/graphql';
 import mapToFormikErrors from '../utils/mapToFormikErrors';
@@ -15,6 +16,7 @@ const Register= () => {
   const router = useRouter();
   return(
     <div className="h-screen bg-tumblrBackground grid grid-cols-1 place-items-center">
+      <Header />
     <div className="flex flex-col  w-64">
       <div className="text-7xl text-white font-extrabold text-center mb-4">
         tumblr

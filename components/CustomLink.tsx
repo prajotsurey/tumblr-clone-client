@@ -6,13 +6,14 @@ interface CustomLinkProps {
   color: String | null;
   text: String | null;
   linkTo: string | UrlObject;
+  variant: 'normal' | 'small';
 }
 
-export const CustomLink: React.FC<CustomLinkProps> = ({linkTo, text, color}) => {
+export const CustomLink: React.FC<CustomLinkProps> = ({linkTo, text, color, variant}) => {
   if( color === "blue" ) {
     return (
       <Link href={linkTo}>
-        <div className="p-3 rounded-sm bg-tumblrBlue w-full font-medium text-center">
+        <div className={`${variant === 'normal' ? 'p-3' : 'p-2'} rounded-sm bg-tumblrBlue w-full font-medium text-center cursor-pointer`}>
         {text}
         </div>
       </Link>
@@ -20,7 +21,7 @@ export const CustomLink: React.FC<CustomLinkProps> = ({linkTo, text, color}) => 
   } else if( color === "green" ) {
     return (
       <Link href={linkTo}>
-        <div className="p-3 rounded-sm bg-tumblrGreen w-full font-medium text-center">
+        <div className={`${variant === 'normal' ? 'p-3' : 'p-2'} rounded-sm bg-tumblrGreen w-full font-medium text-center cursor-pointer`}>
         {text}
         </div>
       </Link>
@@ -28,7 +29,7 @@ export const CustomLink: React.FC<CustomLinkProps> = ({linkTo, text, color}) => 
   } else {
     return (
       <Link href={linkTo}>
-        <div className="p-3 rounded-sm bg-none w-full font-medium text-center">
+        <div className={`${variant === 'normal' ? 'p-3' : 'p-2'} rounded-sm bg-none w-full font-medium text-center cursor-pointer`}>
         {text}
         </div>
       </Link>

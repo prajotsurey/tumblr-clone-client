@@ -3,6 +3,7 @@ import { useRouter } from 'next/dist/client/router';
 import React from 'react';
 import { CustomButton } from '../components/CustomButton';
 import { FormErrorSection } from '../components/FormErrorSection';
+import { Header } from '../components/Header';
 import { InputField } from '../components/InputField';
 import { useRegisterMutation } from '../generated/graphql';
 import mapToFormikErrors from '../utils/mapToFormikErrors';
@@ -13,11 +14,12 @@ const Register= () => {
   const [register] = useRegisterMutation()
   const router = useRouter();
   return(
-<div className="h-screen bg-tumblrBackground grid grid-cols-1 place-items-center">
-    <div className="flex flex-col  w-64">
-      <div className="text-7xl text-white font-extrabold text-center mb-4">
-        tumblr
-      </div>
+    <div className="h-screen bg-tumblrBackground grid grid-cols-1 place-items-center">
+      <Header />
+      <div className="flex flex-col  w-64">
+        <div className="text-7xl text-white font-extrabold text-center mb-4">
+          tumblr
+        </div>
         <Formik
           onSubmit={async (values, {setErrors}) => {
             const response = await register({
