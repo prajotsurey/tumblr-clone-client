@@ -12,6 +12,15 @@ const index = () => {
         <Link href="/bye">
           goto bye
         </Link>
+        <Link href="/createPost">
+          createPost
+        </Link>
+        <Link href="/login">
+          Login
+        </Link>
+        <Link href="/posts">
+          Posts
+        </Link>
         <button onClick={async() => {
           await logout();
           setAccessToken("");
