@@ -9,11 +9,15 @@ import { InputField } from '../components/InputField';
 import { useLoginMutation } from '../generated/graphql';
 import mapToFormikErrors from '../utils/mapToFormikErrors';
 import withApollo from '../utils/withApollo';
+import { useApolloClient } from '@apollo/client';
+
 
 const Register= () => {
 
   const [login] = useLoginMutation()
   const router = useRouter();
+  const apolloClient = useApolloClient();
+
   return(
     <div className="h-screen bg-tumblrBackground grid grid-cols-1 place-items-center">
       <Header />
@@ -32,9 +36,9 @@ const Register= () => {
               setErrors(mapToFormikErrors(response.data.login.errors))
             } else {
               router.push('/dashboard')
-              console.log(response.data.login.token)
               setAccessToken(response.data.login.token)
-              console.log(getAccessToken())
+              await apolloClient.resetStore();
+
             }
           }}
           initialValues={{

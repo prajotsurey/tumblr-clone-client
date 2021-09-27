@@ -30,12 +30,9 @@ const tokenRefreshLink = new TokenRefreshLink({
 
     try {
       const { exp }:any = jwtDecode(token);
-      console.log(exp)
       if (Date.now() >= exp * 1000) {
-        console.log('expired')
         return false;
       } else {
-        console.log('not expired')
         return true;
       }
     } catch {

@@ -12,8 +12,6 @@ interface dashboardProps {
 
 const dashboard: React.FC<dashboardProps> = ({}) => {
   const {data, error, loading} = usePostsQuery();
-  console.log(data?.posts)
-
   return (
     <div className="h-screen bg-tumblrBackground flex flex-row justify-center">
       <Header />
