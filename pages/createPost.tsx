@@ -56,7 +56,7 @@ const createPost: React.FC<createPostProps> = ({}) => {
                 </button>
                 </div>
               </div>
-              <div className="font-bold pl-2 py-4">{data?.Me.username}</div>
+              <div className="font-bold pl-2 pt-1 pb-4">{data?.Me.username}</div>
               <input 
                 name="title"
                 type="text"
