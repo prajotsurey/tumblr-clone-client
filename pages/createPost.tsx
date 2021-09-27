@@ -14,6 +14,8 @@ import Modal from 'react-modal'
 import { CreateTray } from '../components/CreateTray';
 import { Header } from '../components/Header';
 import { Post } from '../components/Post';
+import Image from 'next/image'
+
 
 Modal.setAppElement('#__next')
 
@@ -24,6 +26,7 @@ interface createPostProps {
 
 const modalStyles = {
   content: {
+    position: 'relative',
     width: '540px',
     top: '50%',
     left: '50%',
@@ -31,6 +34,7 @@ const modalStyles = {
     bottom: 'auto',
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
+    overflow: 'show'
   },
   overlay: {
     backgroundColor: 'rgba(0, 25, 53, 0.95)'
@@ -61,6 +65,13 @@ const createPost: React.FC<createPostProps> = ({}) => {
         contentLabel="Post modal"
         style={modalStyles}
       >
+        <div className="rounded-md overflow-hidden w-dashboardProfile h-dashboardProfile mr-6 right-full top-0 bg-gray-200 absolute">
+          <Image 
+            src="/pyramid_open_512.png" 
+            width={500}
+            height={500} 
+            alt="Picture of the author" />
+        </div>
         <CreatePostForm />
       </Modal>
     </div>

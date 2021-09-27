@@ -8,6 +8,7 @@ import withApollo from '../utils/withApollo';
 import Modal from 'react-modal';
 import { useRouter } from 'next/router'
 import { CreatePostForm } from '../components/createPostForm';
+import Image from 'next/image'
 
 interface dashboardProps {
 
@@ -15,6 +16,7 @@ interface dashboardProps {
 
 const modalStyles = {
   content: {
+    position: 'relative',
     width: '540px',
     top: '50%',
     left: '50%',
@@ -22,6 +24,7 @@ const modalStyles = {
     bottom: 'auto',
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
+    overflow: 'show'
   },
   overlay: {
     backgroundColor: 'rgba(0, 25, 53, 0.95)'
@@ -51,6 +54,13 @@ const dashboard: React.FC<dashboardProps> = ({}) => {
         contentLabel="Post modal"
         style={modalStyles}
       >
+        <div className="rounded-md overflow-hidden w-dashboardProfile h-dashboardProfile mr-6 right-full top-0 bg-gray-200 absolute">
+          <Image 
+            src="/pyramid_open_512.png" 
+            width={500}
+            height={500} 
+            alt="Picture of the author" />
+        </div>
         <CreatePostForm />
       </Modal>
     </div>
