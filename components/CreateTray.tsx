@@ -6,18 +6,24 @@ interface CreateTrayProps {
 }
 
 export const CreateTray: React.FC<CreateTrayProps> = ({}) => {
-    return (
-      <div className="flex flex-row">
-        <div className="rounded-sm w-dashboardProfile h-dashboardProfile mr-6 bg-gray-200">
+  return (
+    <div className="flex flex-row">
+      <div className="rounded-sm w-dashboardProfile h-dashboardProfile mr-6 bg-gray-200">
 
-        </div>
-        <div className="flex flex-row flex-grow items-center bg-white rounded-sm h-24 p-4">
-          <Link href="/createPost">
-            <div className="text-4xl font-extrabold">
-              Create Post
-            </div>
-          </Link>
-        </div>
       </div>
-    );
+      <div className="flex flex-row flex-grow items-center bg-white rounded-sm h-24 p-4">
+        {/* when this link is clicked actual url is loaded which is dashboard with query parameter 'new' */}
+          {/* if that page is reloaded the browser reloads the displayed url. As a result the createPost page is reloaded*/}
+          {/* https://dev.to/toomuchdesign/contextual-routing-and-modal-routes-in-next-js-18fn */}
+        <Link 
+          href="/dashboard/?new=1" //actual url
+          as="/createPost/" //displayed url
+          > 
+          <div className="text-4xl font-extrabold ">
+            Create Post
+          </div>
+        </Link>
+      </div>
+    </div>
+  );
 }
