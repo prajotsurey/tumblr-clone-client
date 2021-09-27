@@ -13,6 +13,21 @@ interface dashboardProps {
 
 }
 
+const modalStyles = {
+  content: {
+    width: '540px',
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+  overlay: {
+    backgroundColor: 'rgba(0, 25, 53, 0.95)'
+  }
+}
+
 const dashboard: React.FC<dashboardProps> = ({}) => {
   const {data, error, loading} = usePostsQuery();
   const router = useRouter()
@@ -34,6 +49,7 @@ const dashboard: React.FC<dashboardProps> = ({}) => {
         isOpen={!!router.query.new}
         onRequestClose={() => router.push('/dashboard')}
         contentLabel="Post modal"
+        style={modalStyles}
       >
         <CreatePostForm />
       </Modal>

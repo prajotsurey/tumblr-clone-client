@@ -22,6 +22,21 @@ interface createPostProps {
 
 }
 
+const modalStyles = {
+  content: {
+    width: '540px',
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+  overlay: {
+    backgroundColor: 'rgba(0, 25, 53, 0.95)'
+  }
+}
+
 const createPost: React.FC<createPostProps> = ({}) => {
 
   const {data, error, loading} = usePostsQuery();
@@ -44,6 +59,7 @@ const createPost: React.FC<createPostProps> = ({}) => {
         isOpen={true}
         onRequestClose={() => router.push('/dashboard')}
         contentLabel="Post modal"
+        style={modalStyles}
       >
         <CreatePostForm />
       </Modal>
