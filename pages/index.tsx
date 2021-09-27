@@ -1,12 +1,19 @@
 import Link from 'next/link'
 import { setAccessToken } from '../accessToken';
 import { CustomLink } from '../components/CustomLink';
-import { useLogoutMutation } from '../generated/graphql';
+import { useLogoutMutation, useMeQuery } from '../generated/graphql';
 import withApollo from '../utils/withApollo';
 import { Header } from '../components/Header';
+import { useRouter } from 'next/router';
 
 const index = () => {
-  const [logout, {client}] = useLogoutMutation()
+  const router = useRouter();
+  const { data: MeData, loading: MeLoading } = useMeQuery();
+
+  if(MeData?.Me && !MeLoading) {
+    router.push('/dashboard')
+  }
+
   return(
     <div className="h-screen bg-tumblrBackground grid grid-cols-1 place-items-center">
       <Header />

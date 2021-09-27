@@ -5,7 +5,7 @@ import { CustomButton } from '../components/CustomButton';
 import { FormErrorSection } from '../components/FormErrorSection';
 import { Header } from '../components/Header';
 import { InputField } from '../components/InputField';
-import { useRegisterMutation } from '../generated/graphql';
+import { useMeQuery, useRegisterMutation } from '../generated/graphql';
 import mapToFormikErrors from '../utils/mapToFormikErrors';
 import withApollo from '../utils/withApollo';
 
@@ -13,6 +13,11 @@ const Register= () => {
 
   const [register] = useRegisterMutation()
   const router = useRouter();
+  const { data: MeData, loading: MeLoading } = useMeQuery();
+
+  if(!MeData?.Me && !MeLoading) {
+    router.push('/dashboard')
+  }
   return(
     <div className="h-screen bg-tumblrBackground grid grid-cols-1 place-items-center">
       <Header />

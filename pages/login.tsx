@@ -6,7 +6,7 @@ import { CustomButton } from '../components/CustomButton';
 import { FormErrorSection } from '../components/FormErrorSection';
 import { Header } from '../components/Header';
 import { InputField } from '../components/InputField';
-import { useLoginMutation } from '../generated/graphql';
+import { useLoginMutation, useMeQuery } from '../generated/graphql';
 import mapToFormikErrors from '../utils/mapToFormikErrors';
 import withApollo from '../utils/withApollo';
 import { useApolloClient } from '@apollo/client';
@@ -17,6 +17,13 @@ const Register= () => {
   const [login] = useLoginMutation()
   const router = useRouter();
   const apolloClient = useApolloClient();
+
+  const { data: MeData, loading: MeLoading } = useMeQuery();
+
+  if(MeData?.Me && !MeLoading) {
+    router.push('/dashboard')
+  }
+
 
   return(
     <div className="h-screen bg-tumblrBackground grid grid-cols-1 place-items-center">

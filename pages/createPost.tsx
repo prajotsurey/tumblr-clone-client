@@ -45,6 +45,13 @@ const createPost: React.FC<createPostProps> = ({}) => {
 
   const {data, error, loading} = usePostsQuery();
   const router = useRouter()
+
+  const { data: MeData, loading: MeLoading } = useMeQuery();
+
+  if(!MeData?.Me && !MeLoading) {
+    router.push('/')
+  }
+
   return (
     <div className="h-screen bg-tumblrBackground flex flex-row justify-center">
       <Header />
