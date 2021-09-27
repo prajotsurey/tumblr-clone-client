@@ -12,6 +12,8 @@ module.exports = {
       width:{
         'centerFull': "990px",
         'dashboardProfile': '64px',
+        'centerLeftMax': "625px",
+        'centerLeftPostMax': "540px",
       },
       height:{
         'dashboardProfile': '64px',

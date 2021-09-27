@@ -2,9 +2,10 @@ import { Formik, Form } from 'formik';
 import router from 'next/dist/client/router';
 import React from 'react'
 import { setAccessToken, getAccessToken } from '../accessToken';
+import { CustomButton } from '../components/CustomButton';
 import { FormErrorSection } from '../components/FormErrorSection';
 import { InputField } from '../components/InputField';
-import { useCreatePostMutation } from '../generated/graphql';
+import { useCreatePostMutation, useMeQuery } from '../generated/graphql';
 import mapToFormikErrors from '../utils/mapToFormikErrors';
 import withApollo from '../utils/withApollo';
 import login from './login';
@@ -15,9 +16,11 @@ interface createPostProps {
 
 const createPost: React.FC<createPostProps> = ({}) => {
   const [createPost] = useCreatePostMutation();
+  const { data, loading } = useMeQuery();
+
   return (
-    <div className="h-screen grid grid-cols-1 place-items-center">
-      <div className="rounded-md border border-black p-5">
+    <div className="h-screen bg-tumblrBackground grid grid-cols-1 place-items-center">
+      <div className="w-centerLeftPostMax rounded-sm border bg-white">
         <Formik
           onSubmit={async (values, {setErrors}) => {
             const response = await createPost({
@@ -46,23 +49,26 @@ const createPost: React.FC<createPostProps> = ({}) => {
             <>
             <FormErrorSection errors={errors} touched={touched}/>
             <Form className="flex flex-col">
-              <div className="mt-4">  
-                <InputField 
-                  name="title"
-                  type="text"
-                  label="title"
-                  placeholder="text"
-                  />
+              <div className="h-12 p-2 flex flex-row justify-end">
+                <div className="">
+                <button type="submit" className="p-1 px-3 rounded-sm bg-tumblrBlue w-full h-full font-medium text-white text-center">
+                  Create Post
+                </button>
+                </div>
               </div>
-              <div className="mt-4">
-                <InputField 
-                name="text"
+              <div className="font-bold pl-2 py-4">{data?.Me.username}</div>
+              <input 
+                name="title"
                 type="text"
-                label="text"
-                placeholder="text"
-                />
-              </div>
-              <button className="mt-4 h-8 bg-red block" type="submit">Create Post</button>
+                placeholder="Title"
+                className="w-full px-6 pt-3 text-2xl rounded-sm focus:outline-none" 
+              />
+              <textarea 
+                name="text"
+                placeholder="Go ahead put anything"
+                className="w-full px-6 p-3 text-sm rounded-sm focus:outline-none h-60" 
+              />
+              <div></div>
             </Form>
             </>
           )}

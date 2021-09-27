@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 
 interface CreateTrayProps {
 
@@ -11,9 +12,11 @@ export const CreateTray: React.FC<CreateTrayProps> = ({}) => {
 
         </div>
         <div className="flex flex-row flex-grow items-center bg-white rounded-sm h-24 p-4">
-          <div className="text-4xl font-extrabold">
-            Create Post
-          </div>
+          <Link href="/createPost">
+            <div className="text-4xl font-extrabold">
+              Create Post
+            </div>
+          </Link>
         </div>
       </div>
     );
