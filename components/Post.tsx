@@ -1,5 +1,5 @@
 import React from 'react'
-import { Post as postType} from '../generated/graphql';
+import Image from 'next/image'
 
 interface PostProps {
   post: {
@@ -12,8 +12,12 @@ interface PostProps {
 export const Post: React.FC<PostProps> = ({post}) => {
   return (
     <div className="flex flex-row mb-5">
-      <div className="rounded-sm w-dashboardProfile h-dashboardProfile mr-6 bg-gray-200">
-
+      <div className="rounded-sm  overflow-hidden w-dashboardProfile h-dashboardProfile mr-6 right-full top-0 bg-gray-200 ">
+        <Image 
+          src="/pyramid_open_512.png" 
+          width={500}
+          height={500} 
+          alt="Picture of the author" />
       </div>
       <div className="flex flex-col flex-grow bg-white rounded-sm">
         <div className="p-3 pb-0 mb-3">

@@ -41,7 +41,9 @@ export const CreatePostForm: React.FC<CreatePostFormProps> = ({}) => {
       >
       {({
         touched,
-        errors
+        errors,
+        values,
+        handleChange
       }) => (
         <>
         <FormErrorSection errors={errors} touched={touched}/>
@@ -58,11 +60,15 @@ export const CreatePostForm: React.FC<CreatePostFormProps> = ({}) => {
             name="title"
             type="text"
             placeholder="Title"
+            value={values.title}
+            onChange={handleChange}
             className="w-full px-6 pt-3 text-2xl rounded-sm focus:outline-none" 
           />
           <textarea 
             name="text"
             placeholder="Go ahead put anything"
+            value={values.text}
+            onChange={handleChange}
             className="w-full px-6 p-3 text-sm rounded-sm focus:outline-none h-60" 
           />
           <div></div>

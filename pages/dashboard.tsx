@@ -1,14 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { CreateTray } from '../components/CreateTray';
 import { CustomLink } from '../components/CustomLink';
 import { Header } from '../components/Header';
 import { Post } from '../components/Post';
-import { usePostsQuery } from '../generated/graphql';
+import { useMeQuery, usePostsQuery } from '../generated/graphql';
 import withApollo from '../utils/withApollo';
 import Modal from 'react-modal';
 import { useRouter } from 'next/router'
 import { CreatePostForm } from '../components/createPostForm';
 import Image from 'next/image'
+import { redirect } from 'next/dist/next-server/server/api-utils';
 
 interface dashboardProps {
 
@@ -34,6 +35,12 @@ const modalStyles = {
 const dashboard: React.FC<dashboardProps> = ({}) => {
   const {data, error, loading} = usePostsQuery();
   const router = useRouter()
+  const { data: MeData, loading: MeLoading } = useMeQuery();
+
+  if(!MeData?.Me && !MeLoading) {
+    router.push('/')
+  }
+
   return (
     <div className="h-screen bg-tumblrBackground flex flex-row justify-center">
       <Header />

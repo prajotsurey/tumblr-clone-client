@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 
 interface CreateTrayProps {
@@ -8,8 +9,12 @@ interface CreateTrayProps {
 export const CreateTray: React.FC<CreateTrayProps> = ({}) => {
   return (
     <div className="flex flex-row">
-      <div className="rounded-sm w-dashboardProfile h-dashboardProfile mr-6 bg-gray-200">
-
+      <div className="rounded-sm overflow-hidden w-dashboardProfile h-dashboardProfile mr-6 right-full top-0 bg-gray-200">
+        <Image 
+          src="/pyramid_open_512.png" 
+          width={500}
+          height={500} 
+          alt="Picture of the author" />
       </div>
       <div className="flex flex-row flex-grow items-center bg-white rounded-sm h-24 p-4">
         {/* when this link is clicked actual url is loaded which is dashboard with query parameter 'new' */}
