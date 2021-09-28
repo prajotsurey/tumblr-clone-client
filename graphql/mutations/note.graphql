@@ -1,0 +1,3 @@
+mutation Note($postId: Int!){
+  note(postId:$postId)
+}

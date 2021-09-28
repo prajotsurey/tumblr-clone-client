@@ -1,0 +1,14 @@
+fragment PostSnippet on Post {
+    id
+    title
+    text
+    noteCount
+    creator{
+      id
+      username
+    }
+    notes{
+      userId
+    }
+    noteStatus
+}

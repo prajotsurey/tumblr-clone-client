@@ -48,7 +48,7 @@ const dashboard: React.FC<dashboardProps> = ({}) => {
         <div className="max-w-centerLeftMax w-full">
           <CreateTray />
           <div className="mt-5">
-            {data?.posts.map(p => <Post post={p}/>) }
+            {data?.posts.map(p => <Post key={p.id} post={p}/>) }
           </div>
         </div>
         <div className="">

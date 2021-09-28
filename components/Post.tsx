@@ -1,12 +1,10 @@
 import React from 'react'
 import Image from 'next/image'
+import { NoteSection } from './NoteSection';
+import { Post as PostType } from '../generated/graphql';
 
 interface PostProps {
-  post: {
-    id: number;
-    title: string;
-    text: string;
-  }
+  post: PostType
 }
 
 export const Post: React.FC<PostProps> = ({post}) => {
@@ -30,9 +28,7 @@ export const Post: React.FC<PostProps> = ({post}) => {
           <div className="font-bold text-md">
             5 notes
           </div>
-          <div>
-            *Icons*
-          </div>
+          <NoteSection noteStatus={post.noteStatus} postId={post.id}/>
         </div>
       </div>
     </div>

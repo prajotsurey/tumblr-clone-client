@@ -27,6 +27,7 @@ export type Mutation = {
   createpost: CreatePostResponse;
   login: UserResponse;
   logout: Scalars['Boolean'];
+  note: Scalars['Boolean'];
   register: UserResponse;
   revokeRefreshTokensForUser: Scalars['Boolean'];
 };
@@ -44,6 +45,11 @@ export type MutationLoginArgs = {
 };
 
 
+export type MutationNoteArgs = {
+  postId: Scalars['Int'];
+};
+
+
 export type MutationRegisterArgs = {
   options: RegisterUserInput;
 };
@@ -53,12 +59,23 @@ export type MutationRevokeRefreshTokensForUserArgs = {
   userId: Scalars['Int'];
 };
 
+export type Note = {
+  __typename?: 'Note';
+  post: Post;
+  postId: Scalars['Float'];
+  user: User;
+  userId: Scalars['Float'];
+};
+
 export type Post = {
   __typename?: 'Post';
   createdAt: Scalars['DateTime'];
   creator: User;
   creatorId: Scalars['Float'];
   id: Scalars['Float'];
+  noteCount: Scalars['Float'];
+  noteStatus: Scalars['Boolean'];
+  notes?: Maybe<Array<Note>>;
   text: Scalars['String'];
   title: Scalars['String'];
   updatedAt: Scalars['DateTime'];
@@ -75,7 +92,7 @@ export type Query = {
 
 
 export type QueryUserArgs = {
-  id: Scalars['String'];
+  id: Scalars['Float'];
 };
 
 export type User = {
@@ -83,6 +100,7 @@ export type User = {
   createdAt: Scalars['DateTime'];
   email: Scalars['String'];
   id: Scalars['Float'];
+  notes?: Maybe<Array<Note>>;
   posts: Array<Post>;
   tokenVersion: Scalars['Float'];
   updatedAt: Scalars['DateTime'];
@@ -109,13 +127,15 @@ export type ValidateOutput = {
   message: Scalars['String'];
 };
 
+export type PostSnippetFragment = { __typename?: 'Post', id: number, title: string, text: string, noteCount: number, noteStatus: boolean, creator: { __typename?: 'User', id: number, username: string }, notes?: Maybe<Array<{ __typename?: 'Note', userId: number }>> };
+
 export type CreatePostMutationVariables = Exact<{
   title: Scalars['String'];
   text: Scalars['String'];
 }>;
 
 
-export type CreatePostMutation = { __typename?: 'Mutation', createpost: { __typename?: 'CreatePostResponse', errors?: Maybe<Array<{ __typename?: 'validateOutput', field: string, message: string }>>, post?: Maybe<{ __typename?: 'Post', text: string, creatorId: number, createdAt: any }> } };
+export type CreatePostMutation = { __typename?: 'Mutation', createpost: { __typename?: 'CreatePostResponse', errors?: Maybe<Array<{ __typename?: 'validateOutput', field: string, message: string }>>, post?: Maybe<{ __typename?: 'Post', id: number, title: string, text: string, noteCount: number, noteStatus: boolean, creator: { __typename?: 'User', id: number, username: string }, notes?: Maybe<Array<{ __typename?: 'Note', userId: number }>> }> } };
 
 export type LoginMutationVariables = Exact<{
   username: Scalars['String'];
@@ -129,6 +149,13 @@ export type LogoutMutationVariables = Exact<{ [key: string]: never; }>;
 
 
 export type LogoutMutation = { __typename?: 'Mutation', logout: boolean };
+
+export type NoteMutationVariables = Exact<{
+  postId: Scalars['Int'];
+}>;
+
+
+export type NoteMutation = { __typename?: 'Mutation', note: boolean };
 
 export type RegisterMutationVariables = Exact<{
   options: RegisterUserInput;
@@ -150,9 +177,24 @@ export type ByeQuery = { __typename?: 'Query', bye: string };
 export type PostsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type PostsQuery = { __typename?: 'Query', posts: Array<{ __typename?: 'Post', id: number, title: string, text: string, creatorId: number, creator: { __typename?: 'User', id: number, username: string } }> };
+export type PostsQuery = { __typename?: 'Query', posts: Array<{ __typename?: 'Post', id: number, title: string, text: string, noteCount: number, noteStatus: boolean, creator: { __typename?: 'User', id: number, username: string }, notes?: Maybe<Array<{ __typename?: 'Note', userId: number }>> }> };
 
-
+export const PostSnippetFragmentDoc = gql`
+    fragment PostSnippet on Post {
+  id
+  title
+  text
+  noteCount
+  creator {
+    id
+    username
+  }
+  notes {
+    userId
+  }
+  noteStatus
+}
+    `;
 export const CreatePostDocument = gql`
     mutation CreatePost($title: String!, $text: String!) {
   createpost(title: $title, text: $text) {
@@ -161,13 +203,11 @@ export const CreatePostDocument = gql`
       message
     }
     post {
-      text
-      creatorId
-      createdAt
+      ...PostSnippet
     }
   }
 }
-    `;
+    ${PostSnippetFragmentDoc}`;
 export type CreatePostMutationFn = Apollo.MutationFunction<CreatePostMutation, CreatePostMutationVariables>;
 
 /**
@@ -267,6 +307,37 @@ export function useLogoutMutation(baseOptions?: Apollo.MutationHookOptions<Logou
 export type LogoutMutationHookResult = ReturnType<typeof useLogoutMutation>;
 export type LogoutMutationResult = Apollo.MutationResult<LogoutMutation>;
 export type LogoutMutationOptions = Apollo.BaseMutationOptions<LogoutMutation, LogoutMutationVariables>;
+export const NoteDocument = gql`
+    mutation Note($postId: Int!) {
+  note(postId: $postId)
+}
+    `;
+export type NoteMutationFn = Apollo.MutationFunction<NoteMutation, NoteMutationVariables>;
+
+/**
+ * __useNoteMutation__
+ *
+ * To run a mutation, you first call `useNoteMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useNoteMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [noteMutation, { data, loading, error }] = useNoteMutation({
+ *   variables: {
+ *      postId: // value for 'postId'
+ *   },
+ * });
+ */
+export function useNoteMutation(baseOptions?: Apollo.MutationHookOptions<NoteMutation, NoteMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<NoteMutation, NoteMutationVariables>(NoteDocument, options);
+      }
+export type NoteMutationHookResult = ReturnType<typeof useNoteMutation>;
+export type NoteMutationResult = Apollo.MutationResult<NoteMutation>;
+export type NoteMutationOptions = Apollo.BaseMutationOptions<NoteMutation, NoteMutationVariables>;
 export const RegisterDocument = gql`
     mutation Register($options: registerUserInput!) {
   register(options: $options) {
@@ -378,17 +449,10 @@ export type ByeQueryResult = Apollo.QueryResult<ByeQuery, ByeQueryVariables>;
 export const PostsDocument = gql`
     query Posts {
   posts {
-    id
-    title
-    text
-    creatorId
-    creator {
-      id
-      username
-    }
+    ...PostSnippet
   }
 }
-    `;
+    ${PostSnippetFragmentDoc}`;
 
 /**
  * __usePostsQuery__
