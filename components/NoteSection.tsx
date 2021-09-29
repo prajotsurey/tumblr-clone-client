@@ -10,7 +10,10 @@ export const NoteSection: React.FC<NoteSectionProps> = ({noteStatus=false, postI
   const [status, setStatus] = useState(noteStatus)
   const [note] = useNoteMutation()
   const noteHandler = async () => {
-    const response = await note({variables:{postId}})
+    const response = await note({
+      variables:{postId},
+      update: (cache) => console.log(cache)
+    })
   }
 
   if(status) {
