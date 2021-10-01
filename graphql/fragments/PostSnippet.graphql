@@ -11,4 +11,6 @@ fragment PostSnippet on Post {
       userId
     }
     noteStatus
+    createdAt
+    updatedAt
 }

@@ -67,6 +67,12 @@ export type Note = {
   userId: Scalars['Float'];
 };
 
+export type PaginatedPostsResponse = {
+  __typename?: 'PaginatedPostsResponse';
+  hasMore: Scalars['Boolean'];
+  posts?: Maybe<Array<Post>>;
+};
+
 export type Post = {
   __typename?: 'Post';
   createdAt: Scalars['DateTime'];
@@ -86,8 +92,14 @@ export type Query = {
   Me?: Maybe<User>;
   bye: Scalars['String'];
   hello: Scalars['String'];
+  paginatedPosts: PaginatedPostsResponse;
   posts: Array<Post>;
   user?: Maybe<User>;
+};
+
+
+export type QueryPaginatedPostsArgs = {
+  cursor?: Maybe<Scalars['String']>;
 };
 
 
@@ -127,7 +139,7 @@ export type ValidateOutput = {
   message: Scalars['String'];
 };
 
-export type PostSnippetFragment = { __typename?: 'Post', id: number, title: string, text: string, noteCount: number, noteStatus: boolean, creator: { __typename?: 'User', id: number, username: string }, notes?: Maybe<Array<{ __typename?: 'Note', userId: number }>> };
+export type PostSnippetFragment = { __typename?: 'Post', id: number, title: string, text: string, noteCount: number, noteStatus: boolean, createdAt: any, updatedAt: any, creator: { __typename?: 'User', id: number, username: string }, notes?: Maybe<Array<{ __typename?: 'Note', userId: number }>> };
 
 export type CreatePostMutationVariables = Exact<{
   title: Scalars['String'];
@@ -135,7 +147,7 @@ export type CreatePostMutationVariables = Exact<{
 }>;
 
 
-export type CreatePostMutation = { __typename?: 'Mutation', createpost: { __typename?: 'CreatePostResponse', errors?: Maybe<Array<{ __typename?: 'validateOutput', field: string, message: string }>>, post?: Maybe<{ __typename?: 'Post', id: number, title: string, text: string, noteCount: number, noteStatus: boolean, creator: { __typename?: 'User', id: number, username: string }, notes?: Maybe<Array<{ __typename?: 'Note', userId: number }>> }> } };
+export type CreatePostMutation = { __typename?: 'Mutation', createpost: { __typename?: 'CreatePostResponse', errors?: Maybe<Array<{ __typename?: 'validateOutput', field: string, message: string }>>, post?: Maybe<{ __typename?: 'Post', id: number, title: string, text: string, noteCount: number, noteStatus: boolean, createdAt: any, updatedAt: any, creator: { __typename?: 'User', id: number, username: string }, notes?: Maybe<Array<{ __typename?: 'Note', userId: number }>> }> } };
 
 export type LoginMutationVariables = Exact<{
   username: Scalars['String'];
@@ -174,10 +186,17 @@ export type ByeQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type ByeQuery = { __typename?: 'Query', bye: string };
 
+export type PaginatedPostsQueryVariables = Exact<{
+  cursor?: Maybe<Scalars['String']>;
+}>;
+
+
+export type PaginatedPostsQuery = { __typename?: 'Query', paginatedPosts: { __typename?: 'PaginatedPostsResponse', hasMore: boolean, posts?: Maybe<Array<{ __typename?: 'Post', id: number, title: string, text: string, noteCount: number, noteStatus: boolean, createdAt: any, updatedAt: any, creator: { __typename?: 'User', id: number, username: string }, notes?: Maybe<Array<{ __typename?: 'Note', userId: number }>> }>> } };
+
 export type PostsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type PostsQuery = { __typename?: 'Query', posts: Array<{ __typename?: 'Post', id: number, title: string, text: string, noteCount: number, noteStatus: boolean, creator: { __typename?: 'User', id: number, username: string }, notes?: Maybe<Array<{ __typename?: 'Note', userId: number }>> }> };
+export type PostsQuery = { __typename?: 'Query', posts: Array<{ __typename?: 'Post', id: number, title: string, text: string, noteCount: number, noteStatus: boolean, createdAt: any, updatedAt: any, creator: { __typename?: 'User', id: number, username: string }, notes?: Maybe<Array<{ __typename?: 'Note', userId: number }>> }> };
 
 export const PostSnippetFragmentDoc = gql`
     fragment PostSnippet on Post {
@@ -193,6 +212,8 @@ export const PostSnippetFragmentDoc = gql`
     userId
   }
   noteStatus
+  createdAt
+  updatedAt
 }
     `;
 export const CreatePostDocument = gql`
@@ -446,6 +467,44 @@ export function useByeLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ByeQue
 export type ByeQueryHookResult = ReturnType<typeof useByeQuery>;
 export type ByeLazyQueryHookResult = ReturnType<typeof useByeLazyQuery>;
 export type ByeQueryResult = Apollo.QueryResult<ByeQuery, ByeQueryVariables>;
+export const PaginatedPostsDocument = gql`
+    query paginatedPosts($cursor: String) {
+  paginatedPosts(cursor: $cursor) {
+    hasMore
+    posts {
+      ...PostSnippet
+    }
+  }
+}
+    ${PostSnippetFragmentDoc}`;
+
+/**
+ * __usePaginatedPostsQuery__
+ *
+ * To run a query within a React component, call `usePaginatedPostsQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePaginatedPostsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePaginatedPostsQuery({
+ *   variables: {
+ *      cursor: // value for 'cursor'
+ *   },
+ * });
+ */
+export function usePaginatedPostsQuery(baseOptions?: Apollo.QueryHookOptions<PaginatedPostsQuery, PaginatedPostsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<PaginatedPostsQuery, PaginatedPostsQueryVariables>(PaginatedPostsDocument, options);
+      }
+export function usePaginatedPostsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PaginatedPostsQuery, PaginatedPostsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<PaginatedPostsQuery, PaginatedPostsQueryVariables>(PaginatedPostsDocument, options);
+        }
+export type PaginatedPostsQueryHookResult = ReturnType<typeof usePaginatedPostsQuery>;
+export type PaginatedPostsLazyQueryHookResult = ReturnType<typeof usePaginatedPostsLazyQuery>;
+export type PaginatedPostsQueryResult = Apollo.QueryResult<PaginatedPostsQuery, PaginatedPostsQueryVariables>;
 export const PostsDocument = gql`
     query Posts {
   posts {

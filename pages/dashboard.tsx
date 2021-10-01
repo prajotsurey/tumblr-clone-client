@@ -3,7 +3,7 @@ import { CreateTray } from '../components/CreateTray';
 import { CustomLink } from '../components/CustomLink';
 import { Header } from '../components/Header';
 import { Post } from '../components/Post';
-import { useMeQuery, usePostsQuery } from '../generated/graphql';
+import { useMeQuery, usePaginatedPostsQuery, usePostsQuery } from '../generated/graphql';
 import withApollo from '../utils/withApollo';
 import Modal from 'react-modal';
 import { useRouter } from 'next/router'
@@ -33,7 +33,9 @@ const modalStyles = {
 }
 
 const dashboard: React.FC<dashboardProps> = ({}) => {
-  const {data, error, loading} = usePostsQuery();
+  const {data, error, loading, fetchMore} = usePaginatedPostsQuery({
+    notifyOnNetworkStatusChange: true
+  });
   const router = useRouter()
   const { data: MeData, loading: MeLoading } = useMeQuery();
 
@@ -48,8 +50,23 @@ const dashboard: React.FC<dashboardProps> = ({}) => {
         <div className="max-w-centerLeftMax w-full">
           <CreateTray />
           <div className="mt-5">
-            {data?.posts.map(p => <Post key={p.id} post={p}/>) }
+            {data?.paginatedPosts.posts.map(p => <Post key={p.id} post={p}/>) }
           </div>
+          {data?.paginatedPosts.hasMore
+          ? <div>
+            <button onClick={() => {
+              fetchMore({
+                variables: {
+                  cursor:
+                  data.paginatedPosts.posts[data.paginatedPosts.posts.length - 1].createdAt,
+                }
+              })
+            }}>
+              Load more posts {data.paginatedPosts.posts[4].createdAt}
+            </button>
+          </div>
+          : null
+          }
         </div>
         <div className="">
 

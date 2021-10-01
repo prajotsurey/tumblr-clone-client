@@ -4,6 +4,7 @@ import { setContext } from '@apollo/client/link/context';
 import { getAccessToken, setAccessToken } from "../accessToken";
 import { TokenRefreshLink } from 'apollo-link-token-refresh';
 import jwtDecode from 'jwt-decode';
+import { PaginatedPostsQuery, PaginatedPostsResponse } from "../generated/graphql";
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:4000/graphql',
@@ -58,7 +59,27 @@ const tokenRefreshLink = new TokenRefreshLink({
 const apolloClient = new ApolloClient({
   link: from([tokenRefreshLink, authLink.concat(httpLink)]),
   // link: authLink.concat(httpLink),
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache({
+    typePolicies: {
+      Query: {
+        fields: {
+          paginatedPosts: {
+            keyArgs: [],
+            merge(
+              existing: PaginatedPostsResponse | undefined,
+              incoming: PaginatedPostsResponse
+              ): PaginatedPostsResponse{
+                console.log('incoming:', incoming)
+                return {
+                  ...incoming,
+                  posts: [...(existing?.posts || []), ...incoming?.posts]
+                }
+            }
+          }
+        }
+      }
+    }
+  }),
 });
 
 export default withApollo(apolloClient);

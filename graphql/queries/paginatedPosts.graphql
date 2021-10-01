@@ -1,0 +1,8 @@
+query paginatedPosts($cursor: String){
+  paginatedPosts(cursor:$cursor){
+    hasMore
+    posts{
+    ...PostSnippet
+    }
+  }
+}
