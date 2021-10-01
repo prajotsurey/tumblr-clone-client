@@ -15,7 +15,7 @@ const Register= () => {
   const router = useRouter();
   const { data: MeData, loading: MeLoading } = useMeQuery();
 
-  if(!MeData?.Me && !MeLoading) {
+  if(MeData?.Me && !MeLoading) {
     router.push('/dashboard')
   }
   return(
