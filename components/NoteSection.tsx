@@ -45,7 +45,6 @@ export const NoteSection: React.FC<NoteSectionProps> = ({noteStatus=false, postI
         noteStatus: !Post.noteStatus
       }
     })
-    console.log(updatedPost)
   }
 
   // show this icon if post is not noted

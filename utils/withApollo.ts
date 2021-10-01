@@ -69,7 +69,6 @@ const apolloClient = new ApolloClient({
               existing: PaginatedPostsResponse | undefined,
               incoming: PaginatedPostsResponse
               ): PaginatedPostsResponse{
-                console.log('incoming:', incoming)
                 return {
                   ...incoming,
                   posts: [...(existing?.posts || []), ...incoming?.posts]
