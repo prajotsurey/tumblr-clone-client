@@ -1,15 +1,13 @@
-import React, { useEffect } from 'react'
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import React from 'react';
+import Modal from 'react-modal';
+import { CreatePostForm } from '../components/createPostForm';
 import { CreateTray } from '../components/CreateTray';
-import { CustomLink } from '../components/CustomLink';
 import { Header } from '../components/Header';
 import { Post } from '../components/Post';
-import { useMeQuery, usePaginatedPostsQuery, usePostsQuery } from '../generated/graphql';
+import { useMeQuery, usePaginatedPostsQuery } from '../generated/graphql';
 import withApollo from '../utils/withApollo';
-import Modal from 'react-modal';
-import { useRouter } from 'next/router'
-import { CreatePostForm } from '../components/createPostForm';
-import Image from 'next/image'
-import { redirect } from 'next/dist/next-server/server/api-utils';
 
 interface dashboardProps {
 
