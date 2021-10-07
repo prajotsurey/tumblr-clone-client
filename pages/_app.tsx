@@ -5,9 +5,9 @@ import { getAccessToken, setAccessToken } from '../accessToken'
 function MyApp({ Component, pageProps }) {
 
   const [loading, setLoading] = useState(true)
-
+  console.log('env', process.env.REFRESH_URL)
   useEffect(() => {
-    fetch(process.env.REFRESH_URL as string,{ 
+    fetch(`${process.env.NEXT_PUBLIC_REFRESH_URL}`,{ 
       method: "POST",
       credentials: "include"
     })

@@ -1,10 +1,10 @@
 import React from 'react'
 import Image from 'next/image'
 import { NoteSection } from './NoteSection';
-import { Post as PostType } from '../generated/graphql';
+import { Maybe, Note, Post as PostType, Scalars, User } from '../generated/graphql';
 
 interface PostProps {
-  post: PostType
+  post: any
 }
 
 export const Post: React.FC<PostProps> = ({post}) => {
