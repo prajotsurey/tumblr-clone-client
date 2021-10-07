@@ -5,7 +5,7 @@
     "build": "next build",
     "start": "next start",
     "gen": "graphql-codegen --config codegen.yml",
-    "heroku-postbuild": "next build"
+    "heroku-postbuild": "npm install && next build"
   },
   "dependencies": {
     "@apollo/client": "^3.4.12",
