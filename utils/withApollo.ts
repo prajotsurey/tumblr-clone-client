@@ -7,7 +7,7 @@ import jwtDecode from 'jwt-decode';
 import { PaginatedPostsQuery, PaginatedPostsResponse } from "../generated/graphql";
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:4000/graphql',
+  uri: process.env.API_URL as string,
   credentials: 'include'
 });
 
@@ -42,7 +42,7 @@ const tokenRefreshLink = new TokenRefreshLink({
 
   },
   fetchAccessToken: () => {
-    return fetch("http://localhost:4000/refresh_token",{ 
+    return fetch(process.env.REFRESH_URL as string,{ 
       method: "POST",
       credentials: "include"
     })

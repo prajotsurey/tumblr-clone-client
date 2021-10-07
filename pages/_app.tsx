@@ -7,7 +7,7 @@ function MyApp({ Component, pageProps }) {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch("http://localhost:4000/refresh_token",{ 
+    fetch(process.env.REFRESH_URL as string,{ 
       method: "POST",
       credentials: "include"
     })
