@@ -12,7 +12,6 @@ import withApollo from '../utils/withApollo';
 interface dashboardProps {
 
 }
-
 const modalStyles = {
   content: {
     position: 'relative',
