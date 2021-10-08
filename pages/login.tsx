@@ -10,6 +10,7 @@ import { useLoginMutation, useMeQuery } from '../generated/graphql';
 import mapToFormikErrors from '../utils/mapToFormikErrors';
 import withApollo from '../utils/withApollo';
 import { useApolloClient } from '@apollo/client';
+import { TumblrLogo } from '../components/tumblrLogo';
 
 
 const Register= () => {
@@ -28,10 +29,8 @@ const Register= () => {
   return(
     <div className="h-screen bg-tumblrBackground grid grid-cols-1 place-items-center">
       <Header />
-    <div className="flex flex-col  w-userFormWidth">
-      <div className="text-7xl text-white font-extrabold text-center mb-4">
-        tumblr
-      </div>
+    <div className="flex flex-col w-userFormWidth">
+      <TumblrLogo/>
         <Formik
           onSubmit={async (values, {setErrors}) => {
             const response = await login({

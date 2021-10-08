@@ -5,6 +5,7 @@ import { CustomButton } from '../components/CustomButton';
 import { FormErrorSection } from '../components/FormErrorSection';
 import { Header } from '../components/Header';
 import { InputField } from '../components/InputField';
+import { TumblrLogo } from '../components/tumblrLogo';
 import { useMeQuery, useRegisterMutation } from '../generated/graphql';
 import mapToFormikErrors from '../utils/mapToFormikErrors';
 import withApollo from '../utils/withApollo';
@@ -22,9 +23,7 @@ const Register= () => {
     <div className="h-screen bg-tumblrBackground grid grid-cols-1 place-items-center">
       <Header />
       <div className="flex flex-col w-userFormWidth">
-        <div className="text-7xl text-white font-extrabold text-center mb-4">
-          tumblr
-        </div>
+        <TumblrLogo />
         <Formik
           onSubmit={async (values, {setErrors}) => {
             const response = await register({
