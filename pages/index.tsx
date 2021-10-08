@@ -5,6 +5,7 @@ import { useLogoutMutation, useMeQuery } from '../generated/graphql';
 import withApollo from '../utils/withApollo';
 import { Header } from '../components/Header';
 import { useRouter } from 'next/router';
+import { TumblrLogo } from '../components/tumblrLogo';
 
 const index = () => {
   const router = useRouter();
@@ -17,10 +18,8 @@ const index = () => {
   return(
     <div className="h-screen font-default bg-tumblrBackground grid grid-cols-1 place-items-center">
       <Header />
-      <div className="flex flex-col  w-64">
-        <div className="text-7xl text-white font-extrabold text-center mb-4">
-          tumblr
-        </div>
+      <div className="flex flex-col  w-userFormWidth">
+        <TumblrLogo />
         <div className="text-lg text-white font-extrabold text-center mb-4">
         Make stuff, look at stuff, talk about stuff, find your people.
         </div>
