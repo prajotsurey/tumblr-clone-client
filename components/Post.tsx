@@ -18,13 +18,13 @@ export const Post: React.FC<PostProps> = ({post}) => {
           alt="Picture of the author" />
       </div>
       <div className="flex flex-col flex-grow bg-white w-centerLeftPostMax rounded-sm">
-        <div className="p-3 pb-0 mb-3 text-sm font-bold">
+        <div className="p-3 px-6 pb-0 mb-3 text-sm font-bold">
           {post.creator.username}
         </div>
-        <div className="px-3 pb-3 text-3xl">
+        <div className="px-6 pb-3 text-3xl">
           {post.text}
         </div>
-        <div className="mt-4 px-3 pb-3 flex flex-row justify-between text-gray-400 ">
+        <div className="mt-4 px-6 pb-3 flex flex-row justify-between text-gray-400 ">
           <div className="font-bold text-md">
             {
               post.noteCount === 1

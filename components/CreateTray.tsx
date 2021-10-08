@@ -16,7 +16,7 @@ export const CreateTray: React.FC<CreateTrayProps> = ({}) => {
           height={500} 
           alt="Picture of the author" />
       </div>
-      <div className="flex flex-row flex-grow items-center bg-white rounded-sm h-24 px-7">
+      <div className="flex flex-row flex-grow items-center bg-white rounded-sm h-24 px-6">
         {/* when this link is clicked actual url is loaded which is dashboard with query parameter 'new' */}
           {/* if that page is reloaded the browser reloads the displayed url. As a result the createPost page is reloaded*/}
           {/* https://dev.to/toomuchdesign/contextual-routing-and-modal-routes-in-next-js-18fn */}
