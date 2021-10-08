@@ -50,8 +50,10 @@ const dashboard: React.FC<dashboardProps> = ({}) => {
             {data?.paginatedPosts.posts.map(p => <Post key={p.id} post={p}/>) }
           </div>
           {data?.paginatedPosts.hasMore
-          ? <div>
-            <button onClick={() => {
+          ? <div className="w-centerLeftPostMax ml-auto mb-4 flex flex-row items-center">
+            <button
+            className="p-1 px-3 font-default rounded-sm bg-tumblrBlue font-bold text-center m-auto" 
+            onClick={() => {
               fetchMore({
                 variables: {
                   cursor:
