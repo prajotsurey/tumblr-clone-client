@@ -14,6 +14,7 @@ module.exports = {
         'dashboardProfile': '64px',
         'centerLeftMax': "625px",
         'centerLeftPostMax': "540px",
+        'userFormWidth': '300px'
       },
       height:{
         'dashboardProfile': '64px',

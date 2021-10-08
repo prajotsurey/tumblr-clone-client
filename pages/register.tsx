@@ -21,7 +21,7 @@ const Register= () => {
   return(
     <div className="h-screen bg-tumblrBackground grid grid-cols-1 place-items-center">
       <Header />
-      <div className="flex flex-col  w-64">
+      <div className="flex flex-col w-userFormWidth">
         <div className="text-7xl text-white font-extrabold text-center mb-4">
           tumblr
         </div>
@@ -62,7 +62,7 @@ const Register= () => {
                   placeholder="Username"
                   />
               </div>
-              <div className="mt-4">  
+              <div className="mt-2">  
                 <InputField 
                   name="email"
                   type="email"
@@ -70,7 +70,7 @@ const Register= () => {
                   placeholder="email"
                   />
               </div>
-              <div className="mt-4">
+              <div className="mt-2">
                 <InputField 
                 name="password"
                 type="password"
@@ -78,7 +78,7 @@ const Register= () => {
                 placeholder="Password"
                 />
               </div>
-              <div className="mt-4 mb-4">
+              <div className="mt-2 mb-2">
                 <InputField 
                 name="passwordConfirm"
                 type="password"
