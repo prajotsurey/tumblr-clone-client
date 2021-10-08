@@ -41,7 +41,7 @@ const dashboard: React.FC<dashboardProps> = ({}) => {
   }
 
   return (
-    <div className="h-screen bg-tumblrBackground flex flex-row justify-center">
+    <div className="min-h-screen font-default bg-tumblrBackground flex flex-row justify-center">
       <Header />
       <div className="flex flex-row w-centerFull mt-24 px-6">
         <div className="max-w-centerLeftMax w-full">
@@ -59,7 +59,7 @@ const dashboard: React.FC<dashboardProps> = ({}) => {
                 }
               })
             }}>
-              Load more posts {data.paginatedPosts.posts[4].createdAt}
+              Load more posts
             </button>
           </div>
           : null
