@@ -28,7 +28,7 @@ const Register= () => {
   return(
     <div className="h-screen bg-tumblrBackground grid grid-cols-1 place-items-center">
       <Header />
-    <div className="flex flex-col  w-64">
+    <div className="flex flex-col  w-userFormWidth">
       <div className="text-7xl text-white font-extrabold text-center mb-4">
         tumblr
       </div>
