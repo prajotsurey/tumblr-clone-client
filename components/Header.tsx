@@ -44,7 +44,7 @@ export const Header: React.FC<HeaderProps> = ({}) => {
           </div>
         : 
         <div className="w-24 mr-1">
-          <button type="submit" className="p-2 rounded-sm bg-tumblrBlue w-full font-medium text-center" onClick={handleLogout}>
+          <button type="submit" className="p-2 rounded-sm font-default bg-tumblrBlue w-full font-bold text-center" onClick={handleLogout}>
             Logout
           </button>
         </div>

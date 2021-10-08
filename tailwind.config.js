@@ -21,8 +21,11 @@ module.exports = {
       maxWidth:{
         'centerLeftMax': "625px",
         'centerLeftPostMax': "540px",
-      }
+      },
     },
+    fontFamily: {
+      default: 'Favorit, "Helvetica Neue", HelveticaNeue, Helvetica, Arial, "sans-serif"'
+    }
   },
   variants: {
     extend: {},

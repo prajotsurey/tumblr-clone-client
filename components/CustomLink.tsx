@@ -13,7 +13,7 @@ export const CustomLink: React.FC<CustomLinkProps> = ({linkTo, text, color, vari
   if( color === "blue" ) {
     return (
       <Link href={linkTo}>
-        <div className={`${variant === 'normal' ? 'p-3' : 'p-2'} rounded-sm bg-tumblrBlue w-full font-medium text-center cursor-pointer`}>
+        <div className={`${variant === 'normal' ? 'p-3' : 'p-2'} font-default rounded-sm bg-tumblrBlue w-full font-bold text-center cursor-pointer`}>
         {text}
         </div>
       </Link>
@@ -21,7 +21,7 @@ export const CustomLink: React.FC<CustomLinkProps> = ({linkTo, text, color, vari
   } else if( color === "green" ) {
     return (
       <Link href={linkTo}>
-        <div className={`${variant === 'normal' ? 'p-3' : 'p-2'} rounded-sm bg-tumblrGreen w-full font-medium text-center cursor-pointer`}>
+        <div className={`${variant === 'normal' ? 'p-3' : 'p-2'} font-default rounded-sm bg-tumblrGreen w-full font-bold text-center cursor-pointer`}>
         {text}
         </div>
       </Link>
@@ -29,7 +29,7 @@ export const CustomLink: React.FC<CustomLinkProps> = ({linkTo, text, color, vari
   } else {
     return (
       <Link href={linkTo}>
-        <div className={`${variant === 'normal' ? 'p-3' : 'p-2'} rounded-sm bg-none w-full font-medium text-center cursor-pointer`}>
+        <div className={`${variant === 'normal' ? 'p-3' : 'p-2'} font-default rounded-sm bg-none w-full font-bold text-center cursor-pointer`}>
         {text}
         </div>
       </Link>

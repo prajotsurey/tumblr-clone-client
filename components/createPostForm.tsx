@@ -47,10 +47,10 @@ export const CreatePostForm: React.FC<CreatePostFormProps> = ({}) => {
       }) => (
         <>
         <FormErrorSection errors={errors} touched={touched}/>
-        <Form className="flex flex-col">
+        <Form className="flex flex-col font-default">
           <div className="h-12 p-2 flex flex-row justify-end">
             <div className="">
-            <button type="submit" className="p-1 px-3 rounded-sm bg-tumblrBlue w-full h-full font-medium text-white text-center">
+            <button type="submit" className="p-1 px-3 rounded-sm bg-tumblrBlue w-full h-full font-bold text-white text-center">
               Create Post
             </button>
             </div>
