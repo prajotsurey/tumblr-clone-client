@@ -25,13 +25,13 @@ export const CreateTray: React.FC<CreateTrayProps> = ({}) => {
             href="/dashboard/?new=1" //actual url
             as="/createPost/" //displayed url
             >
-              <div className="flex flex-col items-center">
-              <div className="text-4xl font-bold group-hover:mb-1 group-hover:-mt-1">
-                Aa
-              </div>
-              <div className="text-md">
-                Text
-              </div>
+              <div className="flex flex-col items-center cursor-pointer">
+                <div className="text-4xl font-bold group-hover:mb-1 group-hover:-mt-1">
+                  Aa
+                </div>
+                <div className="text-md">
+                  Text
+                </div>
               </div>
           </Link>
         </div>
