@@ -21,6 +21,7 @@ module.exports = {
       maxWidth:{
         'centerLeftMax': "625px",
         'centerLeftPostMax': "540px",
+        'headerMax': "1716px"
       },
     },
     fontFamily: {
