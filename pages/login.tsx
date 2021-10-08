@@ -11,6 +11,7 @@ import mapToFormikErrors from '../utils/mapToFormikErrors';
 import withApollo from '../utils/withApollo';
 import { useApolloClient } from '@apollo/client';
 import { TumblrLogo } from '../components/tumblrLogo';
+import Link from 'next/link';
 
 
 const Register= () => {
@@ -81,6 +82,16 @@ const Register= () => {
           )}
           
         </Formik>
+        <div className="text-white font-default text-center mt-3">
+          <span className="mr-1">
+            New to tumblr?
+          </span>
+          <Link href="/register" >
+            <span className="underline cursor-pointer">
+              Sign up!
+            </span>
+          </Link>
+        </div>
       </div>
     </div>
   )

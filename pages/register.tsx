@@ -1,5 +1,6 @@
 import { Form, Formik } from 'formik';
 import { useRouter } from 'next/dist/client/router';
+import Link from 'next/link';
 import React from 'react';
 import { CustomButton } from '../components/CustomButton';
 import { FormErrorSection } from '../components/FormErrorSection';
@@ -91,6 +92,16 @@ const Register= () => {
           )}
           
         </Formik>
+        <div className="text-white font-default text-center mt-3 mr-1">
+          <span className="mr-1">
+            Already have an account? 
+          </span>
+          <Link href="/login">
+            <span className="underline cursor-pointer">
+              Log in!
+            </span>
+          </Link>
+        </div>
       </div>
     </div>
   )
