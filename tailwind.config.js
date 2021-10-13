@@ -8,6 +8,7 @@ module.exports = {
         'tumblrGreen': '#00cf35',
         'tumblrBlue':'#00b8ff',
         'tumblrBackground': "#001935",
+        'overlayBackground': 'rgba(0, 25, 53, 0.95)',
       },
       width:{
         'centerFull': "990px",
