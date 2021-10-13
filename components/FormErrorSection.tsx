@@ -7,7 +7,6 @@ interface FormErrorSectionProps {
 }
 
 export const FormErrorSection: React.FC<FormErrorSectionProps> = ({errors, touched}) => {
-  console.log(Object.values(errors)[0])
   return (
     <div>
       {Object.keys(touched).length !== 0 && Object.keys(errors).length !== 0

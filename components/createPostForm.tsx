@@ -25,7 +25,8 @@ export const CreatePostForm: React.FC<CreatePostFormProps> = ({}) => {
             ...values
           },
           update: (cache) => {
-            cache.evict({ fieldName: 'posts' })
+            console.log(cache)
+            cache.evict({ fieldName: 'paginatedPosts' })
           }
         })
         if(response.data.createpost.errors){
