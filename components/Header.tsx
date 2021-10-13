@@ -5,6 +5,7 @@ import { useApolloClient } from '@apollo/client';
 import { getAccessToken, setAccessToken } from '../accessToken';
 import { useRouter } from 'next/dist/client/router';
 import { CustomButton } from './CustomButton';
+import Sidebar from './Sidebar';
 
 interface HeaderProps {
 
@@ -65,22 +66,7 @@ export const Header: React.FC<HeaderProps> = ({}) => {
           </div>
           }
         </div>
-        <div className={`flex fixed flex-col top-14 bottom-0 w-2/4 z-50 h-full bg-tumblrBackground duration-150 ${sidebarShow ? '-translate-x-0' : '-translate-x-full' } `}>
-          <div className="w-full text-center my-3">
-            <button 
-              className="p-3 font-default rounded-sm bg-tumblrBlue w-2/4 font-bold text-center"
-              onClick={async () => {
-                await setSidebarShow(false)
-                await router.push("/dashboard/?new=1","/createPost/")
-              }}
-            >
-              Create Post
-            </button>
-          </div>
-        </div>
-        <button className={`fixed top-14 bottom-0 w-full ${sidebarShow ? 'block' : 'hidden'} duration-200 bg-overlayBackground`} onClick={() => {setSidebarShow(false)}}>
-
-        </button>
+        <Sidebar sidebarShow={sidebarShow} setSidebarShow={setSidebarShow}/>
       </div>
     </div>
   );
