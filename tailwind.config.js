@@ -1,3 +1,4 @@
+const plugin = require('tailwindcss/plugin')
 module.exports = {
   mode: 'jit',
   purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
@@ -36,5 +37,42 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    plugin(function({ addComponents }) {
+      const newUtilities = {
+        '.menu-primary-enter': {
+          position: 'absolute',
+          transform: 'translateX(-100%)'
+        },
+        '.menu-primary-enter-active': {
+          transform: 'translateX(0%)',
+          transition: 'all 1s ease'
+        },
+        '.menu-primary-exit': {
+          position: 'absolute',
+        },
+        '.menu-primary-exit-active': {
+          transform: 'translateX(-100%)',
+          transition: 'all 1s ease'
+        },
+        '.menu-secondary-enter': {
+          position: 'absolute',
+          transform: 'translateX(100%)'
+        },
+        '.menu-secondary-enter-active': {
+          transform: 'translateX(0%)',
+          transition: 'all 1s ease'
+        },
+        '.menu-secondary-exit': {
+          position: 'absolute',
+        },
+        '.menu-secondary-exit-active': {
+          transform: 'translateX(100%)',
+          transition: 'all 1s ease'
+        },
+      }
+
+      addComponents(newUtilities)
+    })
+  ],
 }

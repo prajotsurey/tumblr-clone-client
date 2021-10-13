@@ -1,32 +1,77 @@
 import { useRouter } from "next/router";
+import { useState } from "react";
+import { CSSTransition } from 'react-transition-group';
+import { FaCog } from 'react-icons/fa'
+import { BsChevronRight } from "react-icons/bs";
+import { BsChevronLeft } from "react-icons/bs";
 
 interface SidebarProps {
 	sidebarShow: boolean,
 	setSidebarShow: React.Dispatch<React.SetStateAction<boolean>>
+  handleLogout: () => Promise<void>
 }
-const Sidebar:React.FC<SidebarProps> = ({sidebarShow, setSidebarShow}) => {
+const Sidebar:React.FC<SidebarProps> = ({sidebarShow, setSidebarShow, handleLogout}) => {
   const router = useRouter();
+	const [ activeMenu, setActiveMenu ] = useState('main');
 	return(
 		<>
-			<div className={`flex fixed flex-col top-14 bottom-0 w-2/4 z-50 h-full bg-tumblrBackground duration-150 ${sidebarShow ? '-translate-x-0' : '-translate-x-full' } `}>
-						<div className="w-full text-center my-3">
+			<div className={`flex fixed flex-col px-3 top-14 bottom-0 w-2/4 z-50 h-full bg-tumblrBackground duration-200 overflow-hidden large:hidden ${sidebarShow ? '-translate-x-0' : '-translate-x-full' } `}>
+				<div className="w-full text-center my-3">
+					<button 
+						className="p-3 font-default rounded-sm bg-tumblrBlue w-2/4 font-bold text-center"
+						onClick={async () => {
+					    	await setSidebarShow(false)
+							await router.push("/dashboard/?new=1","/createPost/")
+						}}
+					>
+						Create Post
+					</button>
+				</div>
+				<div className="w-full text-xl text-white">
+					
+					<CSSTransition 
+						in={activeMenu === 'main'} 
+						timeout={200}
+						unmountOnExit
+						classNames="menu-primary"
+					>
+						<div className="w-full">
 							<button 
-								className="p-3 font-default rounded-sm bg-tumblrBlue w-2/4 font-bold text-center"
-								onClick={async () => {
-									await setSidebarShow(false)
-									await router.push("/dashboard/?new=1","/createPost/")
-								}}
-							>
-								Create Post
+                className="flex flex-row h-6 w-full items-center justify-between" 
+                onClick={() => {setActiveMenu('settings')}} > 
+								<div className="flex flex-row  items-center">
+									<FaCog className="mr-3"/>
+                    Settings
+								</div>
+									<BsChevronRight/> 
 							</button>
 						</div>
-						<div className="w-full flex flex-col">
-							
+					</CSSTransition>
+					<CSSTransition 
+						in={activeMenu === 'settings'} 
+						timeout={200}
+						unmountOnExit
+						classNames="menu-secondary"
+					>
+						<div className="w-full">
+              <button 
+                className="flex flex-row h-6 w-full items-center justify-between" 
+                onClick={() => {setActiveMenu('main')}} > 
+                <BsChevronLeft/> 
+              </button>
+              <div className="mt-3">
+                <button onClick={handleLogout}>
+                  Log out
+                </button>
+              </div>
 						</div>
-					</div>
-					<button className={`fixed top-14 bottom-0 w-full ${sidebarShow ? 'block' : 'hidden'} duration-200 bg-overlayBackground`} onClick={() => {setSidebarShow(false)}}>
+					</CSSTransition>
 
-					</button>
+				</div>
+			</div>
+			<button className={`fixed top-14 bottom-0 w-full ${sidebarShow ? 'block' : 'hidden'} duration-200 bg-overlayBackground`} onClick={() => {setSidebarShow(false)}}>
+
+			</button>
 		</>		
 	)
 }

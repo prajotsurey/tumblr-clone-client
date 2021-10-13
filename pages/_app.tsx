@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import 'tailwindcss/tailwind.css'
 import { getAccessToken, setAccessToken } from '../accessToken'
+import '../public/styles.css';
 
 function MyApp({ Component, pageProps }) {
 
