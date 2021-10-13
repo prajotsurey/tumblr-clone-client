@@ -24,6 +24,9 @@ module.exports = {
         'centerLeftPostMax': "540px",
         'headerMax': "1716px"
       },
+      screens: {
+        'large': '984px',
+      },
     },
     fontFamily: {
       default: 'Favorit, "Helvetica Neue", HelveticaNeue, Helvetica, Arial, "sans-serif"'

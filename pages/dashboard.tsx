@@ -43,7 +43,7 @@ const dashboard: React.FC<dashboardProps> = ({}) => {
   return (
     <div className="min-h-screen font-default bg-tumblrBackground flex flex-row justify-center">
       <Header />
-      <div className="flex flex-row w-centerFull mt-24 px-6">
+      <div className="flex flex-row w-centerFull mt-24 px-6 justify-center large:justify-start">
         <div className="max-w-centerLeftMax w-full">
           <CreateTray />
           <div className="mt-5">
