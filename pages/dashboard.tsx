@@ -43,9 +43,11 @@ const dashboard: React.FC<dashboardProps> = ({}) => {
   return (
     <div className="min-h-screen font-default bg-tumblrBackground flex flex-row justify-center">
       <Header />
-      <div className="flex flex-row w-centerFull mt-24 px-6 justify-center large:justify-start">
+      <div className="flex flex-row w-centerFull mt-12 px-6 justify-center large:justify-start">
         <div className="max-w-centerLeftMax w-full">
+          <div className="hidden large:block">
           <CreateTray />
+          </div>
           <div className="mt-5">
             {data?.paginatedPosts.posts.map(p => <Post key={p.id} post={p}/>) }
           </div>
