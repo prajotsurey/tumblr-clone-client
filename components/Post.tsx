@@ -17,7 +17,7 @@ export const Post: React.FC<PostProps> = ({post}) => {
           height={500} 
           alt="Picture of the author" />
       </div>
-      <div className="flex flex-col flex-grow bg-white w-centerLeftPostMax rounded-sm">
+      <div className="flex flex-col flex-grow bg-white w-auto rounded-sm">
         <div className="p-3 px-6 pb-0 mb-3 text-sm font-bold">
           {post.creator.username}
         </div>
