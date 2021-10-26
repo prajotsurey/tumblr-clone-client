@@ -17,7 +17,7 @@ const Sidebar:React.FC<SidebarProps> = ({sidebarShow, setSidebarShow, handleLogo
 	const [ activeMenu, setActiveMenu ] = useState('main');
 	return(
 		<>
-			<div className={`flex fixed flex-col px-3 top-14 bottom-0 w-2/4 z-50 h-full bg-tumblrBackground duration-200 overflow-hidden large:hidden ${sidebarShow ? '-translate-x-0' : '-translate-x-full' } `}>
+			<div className={`flex fixed flex-col px-3 top-14 left-0 bottom-0 w-2/4 z-50 h-full bg-tumblrBackground duration-200 overflow-hidden large:hidden ${sidebarShow ? '-translate-x-0' : '-translate-x-full' } `}>
 			{!data?.Me
 			?
 				<div className="flex flex-col mt-2">
