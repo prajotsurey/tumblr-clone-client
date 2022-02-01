@@ -29,9 +29,12 @@ const Sidebar:React.FC<SidebarProps> = ({sidebarShow, setSidebarShow, handleLogo
 				</div>
 				</div>
 			: <>
-				<div className="w-full text-center my-3">
+				<div className="w-full my-3">
+					<div className="text-white text-xl font-semibold my-3">
+					{data.Me.username}
+					</div>
 					<button 
-						className="p-3 font-default rounded-sm bg-tumblrBlue w-2/4 font-bold text-center"
+						className="p-3 font-default w-full rounded-sm bg-tumblrBlue font-bold text-center"
 						onClick={async () => {
 					    	await setSidebarShow(false)
 							await router.push("/dashboard/?new=1","/createPost/")
