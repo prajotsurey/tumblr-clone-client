@@ -16,6 +16,7 @@ import { Header } from '../components/Header';
 import { Post } from '../components/Post';
 import Image from 'next/image'
 import Head from 'next/head';
+import Loading from '../components/Loading';
 
 
 Modal.setAppElement('#__next')
@@ -49,11 +50,14 @@ const createPost: React.FC<createPostProps> = ({}) => {
 
   const { data: MeData, loading: MeLoading } = useMeQuery();
 
-  if(!MeData?.Me && !MeLoading) {
-    router.push('/')
+  if(loading || MeLoading) {
+    return(<Loading />)
   }
 
-  return (
+  if(!MeData?.Me && !MeLoading) {
+    router.push('/')
+    return <></>
+  } else return (
     <div className="h-screen bg-tumblrBackground flex flex-row justify-center">
       <Head>
         <title>

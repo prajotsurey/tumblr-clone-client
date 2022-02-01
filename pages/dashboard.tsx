@@ -6,6 +6,7 @@ import Modal from 'react-modal';
 import { CreatePostForm } from '../components/createPostForm';
 import { CreateTray } from '../components/CreateTray';
 import { Header } from '../components/Header';
+import Loading from '../components/Loading';
 import { Post } from '../components/Post';
 import { useMeQuery, usePaginatedPostsQuery } from '../generated/graphql';
 import withApollo from '../utils/withApollo';
@@ -37,13 +38,19 @@ const dashboard: React.FC<dashboardProps> = ({}) => {
   const router = useRouter()
   const { data:MeData, loading: MeLoading } = useMeQuery();
 
-  if(!MeData) {
+  if(loading || MeLoading) {
     return(
-      <>
-      loading
-      </>
+      <Loading />
     )
   }
+
+  console.log(!MeData.Me && !MeLoading)
+
+  if(!MeData.Me){
+    router.push('/')
+    return(<>
+    </>)
+  } else {
 
   return (
     <div className="min-h-screen font-default bg-tumblrBackground flex flex-row justify-center">
@@ -108,6 +115,7 @@ const dashboard: React.FC<dashboardProps> = ({}) => {
       </Modal>
     </div>
   );
+        }
 }
 
 export default withApollo({ ssr:true })(dashboard);
