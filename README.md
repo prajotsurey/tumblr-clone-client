@@ -1,4 +1,4 @@
-# Tumbl clone Frontend built using Typescript, NextJs, TailwindCSS and Apollo-graphql. [Website](https://polar-falls-76219.herokuapp.com/)
+# Tumblr clone Frontend built using Typescript, NextJs, TailwindCSS and Apollo-graphql. [Website](https://polar-falls-76219.herokuapp.com/)
 
 This project is the frontend for a Tumblr clone.
 
