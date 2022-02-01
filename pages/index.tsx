@@ -6,6 +6,7 @@ import withApollo from '../utils/withApollo';
 import { Header } from '../components/Header';
 import { useRouter } from 'next/router';
 import { TumblrLogo } from '../components/tumblrLogo';
+import Head from 'next/head';
 
 const index = () => {
   const router = useRouter();
@@ -17,6 +18,11 @@ const index = () => {
 
   return(
     <div className="h-screen font-default bg-tumblrBackground grid grid-cols-1 place-items-center">
+      <Head>
+        <title>
+          tumblr
+        </title>
+      </Head>
       <Header />
       <div className="flex flex-col  w-userFormWidth">
         <TumblrLogo />

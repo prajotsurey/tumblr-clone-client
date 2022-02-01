@@ -12,6 +12,7 @@ import withApollo from '../utils/withApollo';
 import { useApolloClient } from '@apollo/client';
 import { TumblrLogo } from '../components/tumblrLogo';
 import Link from 'next/link';
+import Head from 'next/head';
 
 
 const Register= () => {
@@ -29,6 +30,11 @@ const Register= () => {
 
   return(
     <div className="h-screen bg-tumblrBackground grid grid-cols-1 place-items-center">
+      <Head>
+        <title>
+          tumblr: login
+        </title>
+      </Head>
       <Header />
     <div className="flex flex-col w-userFormWidth">
       <TumblrLogo/>

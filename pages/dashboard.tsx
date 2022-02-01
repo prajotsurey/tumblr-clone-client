@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React from 'react';
@@ -46,6 +47,11 @@ const dashboard: React.FC<dashboardProps> = ({}) => {
 
   return (
     <div className="min-h-screen font-default bg-tumblrBackground flex flex-row justify-center">
+      <Head>
+        <title>
+          tumblr: dashboard
+        </title>
+      </Head>
       <Header />
       <div className="flex flex-row relative w-centerFull mt-12 large:mt-24 px-6 justify-center large:justify-start">
         <div className="max-w-centerLeftMax w-full">

@@ -15,6 +15,7 @@ import { CreateTray } from '../components/CreateTray';
 import { Header } from '../components/Header';
 import { Post } from '../components/Post';
 import Image from 'next/image'
+import Head from 'next/head';
 
 
 Modal.setAppElement('#__next')
@@ -54,6 +55,11 @@ const createPost: React.FC<createPostProps> = ({}) => {
 
   return (
     <div className="h-screen bg-tumblrBackground flex flex-row justify-center">
+      <Head>
+        <title>
+          tumblr: Create Post
+        </title>
+      </Head>
       <Header />
       <div className="flex flex-row w-centerFull mt-24 px-6">
         <div className="max-w-centerLeftMax w-full">

@@ -1,5 +1,6 @@
 import { Form, Formik } from 'formik';
 import { useRouter } from 'next/dist/client/router';
+import Head from 'next/head';
 import Link from 'next/link';
 import React from 'react';
 import { CustomButton } from '../components/CustomButton';
@@ -22,6 +23,11 @@ const Register= () => {
   }
   return(
     <div className="h-screen bg-tumblrBackground grid grid-cols-1 place-items-center">
+      <Head>
+        <title>
+          tumblr: register
+        </title>
+      </Head>
       <Header />
       <div className="flex flex-col w-userFormWidth">
         <TumblrLogo />
