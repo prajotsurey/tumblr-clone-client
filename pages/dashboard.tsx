@@ -34,16 +34,20 @@ const dashboard: React.FC<dashboardProps> = ({}) => {
     notifyOnNetworkStatusChange: true
   });
   const router = useRouter()
-  const { data: MeData, loading: MeLoading } = useMeQuery();
+  const { data:MeData, loading: MeLoading } = useMeQuery();
 
-  if(!MeData?.Me && !MeLoading) {
-    router.push('/')
+  if(!MeData) {
+    return(
+      <>
+      loading
+      </>
+    )
   }
 
   return (
     <div className="min-h-screen font-default bg-tumblrBackground flex flex-row justify-center">
       <Header />
-      <div className="flex flex-row w-centerFull mt-12 large:mt-24 px-6 justify-center large:justify-start">
+      <div className="flex flex-row relative w-centerFull mt-12 large:mt-24 px-6 justify-center large:justify-start">
         <div className="max-w-centerLeftMax w-full">
           <div className="hidden large:block">
           <CreateTray />
@@ -69,8 +73,16 @@ const dashboard: React.FC<dashboardProps> = ({}) => {
           : null
           }
         </div>
-        <div className="">
-
+        <div className="hidden sticky top-24 large:flex large:flex-grow h-20 px-4">
+          <div className="bg-white rounded-sm w-full h-full p-3">
+            <div className="text-xl font-bold">
+              {MeData.Me.username}
+            </div>
+            <div className="text-md text-gray-400">
+              Joined at {" "}
+              {new Date(MeData.Me.createdAt).toDateString()}
+            </div>
+          </div>
         </div>
       </div>
       <Modal
