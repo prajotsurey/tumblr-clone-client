@@ -10,7 +10,7 @@ interface PostProps {
 export const Post: React.FC<PostProps> = ({post}) => {
   return (
     <div className="flex flex-row mb-5 font-default">
-      <div className="rounded-sm  overflow-hidden w-dashboardProfile h-dashboardProfile mr-6 right-full top-0 bg-gray-200 ">
+      <div className="rounded-sm  overflow-hidden w-dashboardProfile h-dashboardProfile mr-6 right-full top-0 bg-gray-200 flex-shrink-0">
         <Image 
           src="/pyramid_open_512.png" 
           width={500}
