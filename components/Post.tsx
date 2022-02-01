@@ -10,7 +10,7 @@ interface PostProps {
 export const Post: React.FC<PostProps> = ({post}) => {
   return (
     <div className="flex flex-row mb-5 font-default">
-      <div className="rounded-sm  overflow-hidden w-dashboardProfile h-dashboardProfile mr-6 right-full top-0 bg-gray-200 flex-shrink-0">
+      <div className="hidden large:block rounded-sm overflow-hidden w-dashboardProfile h-dashboardProfile mr-6 right-full top-0 bg-gray-200 flex-shrink-0">
         <Image 
           src="/pyramid_open_512.png" 
           width={500}
@@ -18,8 +18,17 @@ export const Post: React.FC<PostProps> = ({post}) => {
           alt="Picture of the author" />
       </div>
       <div className="flex flex-col flex-grow bg-white w-auto rounded-sm">
-        <div className="p-3 px-6 pb-0 mb-3 text-sm font-bold">
-          {post.creator.username}
+        <div className="flex flex-row items-center px-6 py-3 large:bg-white bg-gray-300 mb-3"> 
+          <div className="block h-10 w-10 large:hidden">
+            <Image 
+              src="/pyramid_open_512.png" 
+              width={500}
+              height={500} 
+              alt="Picture of the author" />
+          </div>
+          <div className="text-sm font-bold pl-3 large:pl-0">
+            {post.creator.username}
+          </div>
         </div>
         <div className="px-6 pb-3 text-3xl">
           {post.text}
