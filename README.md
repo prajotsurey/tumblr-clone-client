@@ -1,6 +1,11 @@
-# tumblr-clone-client [LINK](https://polar-falls-76219.herokuapp.com/)
+# Tumbl clone Frontend built using Typescript, NextJs, TailwindCSS and Apollo-graphql. [Website](https://polar-falls-76219.herokuapp.com/)
 
-Frontend for a fullstack tumblr clone.
+This project is the frontend for a Tumblr clone.
+
+## Overview
+This is a replica of the tumblr user interface built using NextJS. It uses Grahql for commuinicating with the server and Tailwind for styling. It is deployed on vercel.
+
+Building this project allowed me to learn TailwindCSS and it's theme provider along with apollo-client. 
 
 Built using Typescript, Nextjs and apollo. 
 * [Installation](#user-content-installation)
