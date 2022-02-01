@@ -44,7 +44,6 @@ const dashboard: React.FC<dashboardProps> = ({}) => {
     )
   }
 
-  console.log(!MeData.Me && !MeLoading)
 
   if(!MeData.Me){
     router.push('/')

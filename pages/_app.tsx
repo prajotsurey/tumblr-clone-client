@@ -8,7 +8,6 @@ import '../public/styles.css';
 function MyApp({ Component, pageProps }) {
 
   const [loading, setLoading] = useState(true)
-  console.log('env', process.env.REFRESH_URL)
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_REFRESH_URL}`,{ 
       method: "POST",
