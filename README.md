@@ -1,6 +1,7 @@
 # Tumblr clone Frontend built using Typescript, NextJs, TailwindCSS and Apollo-graphql. [Website](https://tumblr-clone-client.vercel.app/)
 
 This project is the frontend for a Tumblr clone.
+[Server Repository](https://github.com/prajotsurey/tumblr-clone-server)
 
 ## Overview
 This is a replica of the tumblr user interface built using NextJS. It uses Grahql for commuinicating with the server and Tailwind for styling. It is deployed on vercel.
